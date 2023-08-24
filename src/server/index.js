@@ -14,6 +14,8 @@ app.get("/", function (req, res) {
     </StaticRouter>
   );
 
+  console.log(content);
+
   res.send(`
     <!doctype html>
     <html lang="en">
