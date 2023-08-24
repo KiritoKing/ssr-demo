@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "pnpm webpack --config ./config/webpack.client.js && pnpm webpack --config ./config/webpack.server.js && node ./build/bundle.js"
   },
   "keywords": [],
   "author": "",
@@ -24,5 +24,6 @@
     "express": "^4.18.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
-  }
+  },
+  "packageManager": "pnpm@8.6.12"
 }
