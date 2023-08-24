@@ -1,5 +1,5 @@
 import React from "react";
-import { ReactDOM } from "react";
 import App from "../components/App";
+import { hydrateRoot } from "react-dom/client";
 
-ReactDOM.hydrate(<App />, document.getElementById("root"));
+hydrateRoot(document.getElementById("root"), <App />);

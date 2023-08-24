@@ -3,10 +3,9 @@ import { renderToString } from "react-dom/server";
 import React from "react";
 import App from "../components/App";
 
-const app = express(); // {1}
-app.use(express.static("public")); // {2}
-const content = renderToString(<App />); //{3}
-
+const app = express();
+app.use(express.static("public"));
+const content = renderToString(<App />);
 app.get("/", function (req, res) {
   // {4}
   res.send(`
@@ -27,4 +26,5 @@ app.get("/", function (req, res) {
   `);
 });
 
-app.listen(3000);
+app.listen(3001);
+console.log("Listening 3001");
