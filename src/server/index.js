@@ -31,18 +31,23 @@ app.get("*", async function (req, res) {
   console.log(content);
 
   res.send(`
-    <!doctype html>
+    <!DOCTYPE html>
     <html lang="en">
       <head>
-          <meta charset="UTF-8">
-          <meta name="viewport"
-                content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-          <meta http-equiv="X-UA-Compatible" content="ie=edge">
-          <title>React SSR</title>
+        <meta charset="UTF-8" />
+        <meta
+          name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+        />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>React SSR</title>
       </head>
       <body>
         <div id="root">${content}</div>
-        <script src="/index.js"></script>  
+        <script>
+          window.INITIAL_STATE = ${JSON.stringify(store.getState())};
+        </script>
+        <script src="/index.js"></script>
       </body>
     </html>
   `);

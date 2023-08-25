@@ -9,12 +9,3 @@ export const store = configureStore({
   },
   devTools: true,
 });
-
-export const getClientStore = configureStore({
-  reducer: {
-    counter: counterReducer,
-    contacts: contactsReducer,
-  },
-  // preloadedState: JSON.parse(global.INITIAL_STATE || ""),
-  devTools: true,
-});
