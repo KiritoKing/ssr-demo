@@ -3,15 +3,19 @@ import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
 import React from "react";
 import { AppRouter } from "../components/Routes";
+import { Provider } from "react-redux";
+import { store } from "../store";
 
 const app = express();
 app.use(express.static("public"));
 
-app.get("/", function (req, res) {
+app.get("*", function (req, res) {
   const content = renderToString(
-    <StaticRouter location={req.path}>
-      <AppRouter />
-    </StaticRouter>
+    <Provider store={store}>
+      <StaticRouter location={req.path}>
+        <AppRouter />
+      </StaticRouter>
+    </Provider>
   );
 
   console.log(content);
