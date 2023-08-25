@@ -7,7 +7,7 @@ import { AppRouter } from "../components/Routes";
 const app = express();
 app.use(express.static("public"));
 
-app.get("/", function (req, res) {
+app.get("*", function (req, res) {
   const content = renderToString(
     <StaticRouter location={req.path}>
       <AppRouter />
