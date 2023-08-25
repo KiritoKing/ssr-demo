@@ -15,7 +15,7 @@ import { createRequestHandler } from "@remix-run/express"; // 这个引用不能
 const app = express();
 app.use(express.static("public"));
 
-let handler = createStaticHandler(routes);
+const handler = createStaticHandler(routes);
 
 app.get("*", async function (req, res) {
   const fetchRequest = createFetchRequest(req); // 将express请求转化成fetch 供staticHandler.query调用
@@ -45,7 +45,9 @@ app.get("*", async function (req, res) {
       <body>
         <div id="root">${content}</div>
         <script>
-          window.INITIAL_STATE = ${JSON.stringify(store.getState())};
+          const INIT_STATE = ${JSON.stringify(store.getState())}
+          console.log(INIT_STATE)
+          window.INITIAL_STATE = INIT_STATE;
         </script>
         <script src="/index.js"></script>
       </body>

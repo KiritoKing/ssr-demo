@@ -5,7 +5,10 @@ const Greeting = () => {
   return (
     <div>
       <p>Hello!</p>
-      <Link to="/counter">To Counter</Link>
+      <div>
+        <Link to="/counter">To Counter</Link>
+        <Link to="/contacts">To Contacts</Link>
+      </div>
     </div>
   );
 };

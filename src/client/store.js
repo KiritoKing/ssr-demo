@@ -1,3 +1,4 @@
+import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "../store/slices/counter";
 import contactsReducer from "../store/slices/contacts";
 
@@ -6,6 +7,6 @@ export const clientStore = configureStore({
     counter: counterReducer,
     contacts: contactsReducer,
   },
-  preloadedState: JSON.parse(window.INITIAL_STATE || ""),
+  preloadedState: window.INITIAL_STATE,
   devTools: true,
 });
