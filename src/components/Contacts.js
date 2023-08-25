@@ -41,7 +41,7 @@ const Contacts = () => {
       const res = await dispatch(getUserList()).unwrap();
       console.log(res);
     };
-    init();
+    // init();
   }, []);
 
   return (
@@ -51,7 +51,7 @@ const Contacts = () => {
       </div>
       <ul>
         {users.map((user) => (
-          <li>
+          <li key={user.id}>
             <ContactItem {...user} />
           </li>
         ))}

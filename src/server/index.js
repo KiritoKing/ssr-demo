@@ -1,20 +1,30 @@
 import express from "express";
 import { renderToString } from "react-dom/server";
-import { StaticRouter } from "react-router-dom/server";
+import {
+  StaticRouterProvider,
+  createStaticHandler,
+  createStaticRouter,
+} from "react-router-dom/server";
 import React from "react";
-import { AppRouter } from "../components/Routes";
+import { routes } from "../routes";
 import { Provider } from "react-redux";
 import { store } from "../store";
+import createFetchRequest from "./request";
+import { createRequestHandler } from "@remix-run/express"; // 这个引用不能删除
 
 const app = express();
 app.use(express.static("public"));
 
-app.get("*", function (req, res) {
+let handler = createStaticHandler(routes);
+
+app.get("*", async function (req, res) {
+  const fetchRequest = createFetchRequest(req); // 将express请求转化成fetch 供staticHandler.query调用
+  const context = await handler.query(fetchRequest);
+  const router = createStaticRouter(handler.dataRoutes, context);
+
   const content = renderToString(
     <Provider store={store}>
-      <StaticRouter location={req.path}>
-        <AppRouter />
-      </StaticRouter>
+      <StaticRouterProvider router={router} context={context} />
     </Provider>
   );
 
