@@ -30,8 +30,6 @@ const routes = [
       return data.payload;
     },
     Component() {
-      const loaderData = useLoaderData();
-      console.log(loaderData);
       return <Contacts />;
     },
   },
