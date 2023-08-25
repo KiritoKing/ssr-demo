@@ -17,6 +17,10 @@ app.use(express.static("public"));
 
 const handler = createStaticHandler(routes);
 
+app.get("/favicon.ico", (req, res) => {
+  res.status(404).end();
+});
+
 app.get("*", async function (req, res) {
   const fetchRequest = createFetchRequest(req); // 将express请求转化成fetch 供staticHandler.query调用
   const context = await handler.query(fetchRequest);
